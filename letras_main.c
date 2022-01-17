@@ -47,47 +47,60 @@ int checa_parenteses(char* string_parenteses){
    char *pilha;
    int t=0,n,i;
 
+   iniciapilha();
+
+      if(pilhavazia){
+         return NULL;
+      }
+
    n=strlen(string_parenteses);
    pilha = malloc(n*sizeof(char));
       
-      for(i=0;string_parenteses != '\0';++i){
-         
-         switch (string_parenteses[i])
-         {
-               case ')':
-                  if(t!=0 && pilha[t-1]=='('){
-                     --t;
-                  }else{
-                     return 0;
-                  }
-               break;
-         
-         default:
-            pilha[t++] = string_parenteses[i];
+         for(i=0;string_parenteses != '\0';++i){
+            
+            switch (string_parenteses[i])
+            {
+                  case ')':
+                     if(t!=0 && pilha[t-1]=='('){
+                        --t;
+                     }else{
+                        return 0;
+                     }
+                  break;
+            
+            default:
+               pilha[t++] = string_parenteses[i];
+            }
          }
-      }
    free(pilha);
       
-   if(t==0){
-         return 1;
-      }else{
-         return 0;
-      }
+      if(t==0){
+            return 1;
+         }else{
+            return 0;
+         }
+   desempilha();
 }
 
 /*
 crie uma função que verifique se uma palavra é um palíndromo. retorna 1 se palíndromo
 */
 int checa_palindromo(char* string_palindromo){
+   iniciapilha();
+   
    int i,tamanho = strlen(string_palindromo);
 
-      for(i=0;i<tamanho/2;i++){
-         if(string_palindromo[i] != string_palindromo[tamanho -i -1]){
-            return 0;
-         }else{
-            return 1;
-         }
+      if(pilhavazia){
+         return NULL;
       }
+         for(i=0;i<tamanho/2;i++){
+            if(string_palindromo[i] != string_palindromo[tamanho -i -1]){
+               return 0;
+            }else{
+               return 1;
+            }
+         }
+   desempilha();
 }
 
 int main(){
