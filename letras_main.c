@@ -1,6 +1,7 @@
 #define N 100
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 static char pilha[N];
 static int t;
